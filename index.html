@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>España y Canarias: Realidades Demográficas</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        
+        body { 
+            font-family: 'Open Sans', sans-serif; 
+            margin: 0; 
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); 
+            color: #2c3e50; 
+        }
+
+        
+        header { 
+            background: linear-gradient(to right, #ff512f, #dd2476); 
+            color: white; 
+            padding: 60px 20px; 
+            text-align: center; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        header h1 { 
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 3em; 
+            margin: 0; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+        }
+        header p { font-size: 1.3em; margin-top: 10px; opacity: 0.9; }
+
+        
+        .main-container { 
+            max-width: 900px; 
+            margin: -40px auto 50px; 
+            position: relative; 
+            z-index: 10;
+        }
+
+        
+        .card { 
+            background: white; 
+            border-radius: 15px; 
+            padding: 40px; 
+            margin-bottom: 30px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+            transition: transform 0.3s ease;
+        }
+        .card:hover { transform: translateY(-5px); }
+
+        h2 { 
+            color: #dd2476; 
+            font-family: 'Montserrat', sans-serif; 
+            border-left: 5px solid #ff512f; 
+            padding-left: 15px; 
+            margin-top: 0; 
+        }
+
+        p { line-height: 1.8; font-size: 1.05em; color: #555; }
+        
+    
+        .did-you-know {
+            background-color: #fff8e1;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 5px solid #ffc107;
+            font-style: italic;
+        }
+
+       
+        .chart-box { margin: 30px 0; height: 350px; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; overflow: hidden; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
+        th { background: #2c3e50; color: white; padding: 15px; text-align: left; }
+        td { padding: 15px; border-bottom: 1px solid #eee; }
+        tr:last-child td { border-bottom: none; }
+        
+     
+        footer { 
+            text-align: center; 
+            padding: 40px 20px; 
+            color: #555; 
+            background: #e9ecef;
+            border-top: 1px solid #ddd;
+        }
+        .student-info {
+            background: white;
+            display: inline-block;
+            padding: 20px 40px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .student-names {
+            font-weight: 700;
+            color: #dd2476;
+            font-size: 1.1em;
+            margin: 0;
+        }
+        .student-class {
+            margin: 5px 0 0;
+            font-size: 0.9em;
+            color: #2c3e50;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2em; }
+            .card { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>España y Canarias</h1>
+    <p>¿Hacia dónde va nuestra población?</p>
+</header>
+
+<div class="main-container">
+
+    <div class="card">
+        <h2>1. No son solo números</h2>
+        <p>Cuando hablamos de demografía, a veces nos perdemos en cifras aburridas. Pero la realidad es que la población de España está cambiando de forma radical. Si miramos a nuestro alrededor, cada vez vemos menos carritos de bebé y más gente mayor. Este trabajo intenta explicar <strong>por qué pasa esto</strong> y qué diferencia hay entre vivir en un pueblo de Castilla o en una ciudad saturada de Canarias.</p>
+    </div>
+
+    <div class="card">
+        <h2>2. España: El "Invierno Demográfico"</h2>
+        <p>España ha superado los 48 millones de habitantes, un máximo histórico. Pero, ¡ojo!, esto tiene trampa. No crecemos porque nazcan más niños (de hecho, tenemos una de las tasas de natalidad más bajas del mundo), sino porque la gente vive más años y porque sigue llegando gente de fuera a trabajar.</p>
+        
+        <div class="did-you-know">
+            💡 <strong>Dato curioso:</strong> Se habla mucho de la "España Vaciada". Y es real: el 90% de la población se aprieta en el 30% del territorio (Madrid y la costa), dejando el interior prácticamente desierto.
+        </div>
+
+        <p>Esto crea un país a dos velocidades: ciudades con alquileres por las nubes y pueblos donde cierran los colegios por falta de niños.</p>
+
+        <div class="chart-box">
+            <canvas id="graficoEspana"></canvas>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>3. Canarias: ¿Cabemos todos?</h2>
+        <p>Si miramos a Canarias, la película cambia. Aquí el problema no es que falte gente, sino que, en las islas grandes, casi no cabemos. Tenerife y Gran Canaria soportan una presión brutal. El turismo, que es el motor de todo, atrae trabajadores y residentes europeos, lo que dispara la población.</p>
+        <p>Esto tiene consecuencias directas que vemos todos los días: atascos interminables, falta de vivienda asequible y más consumo de agua y energía de la que podemos generar.</p>
+
+        <div class="chart-box">
+            <canvas id="graficoCanarias"></canvas>
+        </div>
+        <p style="text-align: center; font-size: 0.9em; color: #888;">*Datos aproximados basados en los últimos registros del ISTAC.</p>
+    </div>
+
+    <div class="card">
+        <h2>4. Cara a Cara: Península vs. Archipiélago</h2>
+        <p>Para entenderlo mejor, he comparado los puntos clave. Fíjate en la diferencia de densidad:</p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Tema</th>
+                    <th>España (General)</th>
+                    <th>Canarias</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>El gran problema</strong></td>
+                    <td>Envejecimiento y despoblación rural.</td>
+                    <td>Superpoblación y falta de vivienda.</td>
+                </tr>
+                <tr>
+                    <td><strong>Densidad</strong></td>
+                    <td>95 personas por km² (aprox).</td>
+                    <td>+320 personas por km² (¡el triple!).</td>
+                </tr>
+                <tr>
+                    <td><strong>El futuro</strong></td>
+                    <td>Necesita inmigrantes para pagar pensiones.</td>
+                    <td>Necesita gestionar mejor los recursos limitados.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="card">
+        <h2>5. Conclusión Personal</h2>
+        <p>Después de analizar los datos, mi conclusión es que estamos ante retos opuestos. Mientras que en gran parte de España el silencio se apodera de los pueblos, en Canarias el ruido y la saturación son el día a día. </p>
+        <p>No se trata solo de cuántos somos, sino de <strong>cómo vivimos</strong>. El reto de mi generación será encontrar el equilibrio: repoblar lo vacío y hacer sostenible lo que ya está lleno.</p>
+    </div>
+
+</div>
+
+<footer>
+    <div class="student-info">
+        <p class="student-names">Carlos Adolfo Rodriguez Paz & Akram Alazzouzi</p>
+        <p class="student-class">3º ESO B | <strong>CEO El Cardón</strong></p>
+    </div>
+</footer>
+
+<script>
+    
+    const ctxESP = document.getElementById('graficoEspana').getContext('2d');
+    new Chart(ctxESP, {
+        type: 'line',
+        data: {
+            labels: ['1990', '2000', '2010', '2020', '2024'],
+            datasets: [{
+                label: 'Población en Millones',
+                data: [38.8, 40.5, 46.5, 47.3, 48.6],
+                borderColor: '#ff512f',
+                backgroundColor: 'rgba(255, 81, 47, 0.1)',
+                borderWidth: 3,
+                tension: 0.4,
+                fill: true,
+                pointBackgroundColor: '#fff',
+                pointBorderColor: '#dd2476',
+                pointRadius: 5
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false },
+                tooltip: { backgroundColor: '#2c3e50' }
+            },
+            scales: {
+                y: { min: 35 } 
+            }
+        }
+    });
+
+
+    const ctxCAN = document.getElementById('graficoCanarias').getContext('2d');
+    new Chart(ctxCAN, {
+        type: 'bar',
+        data: {
+            labels: ['Tenerife', 'Gran Canaria', 'Lanzarote', 'Fuerteventura', 'La Palma', 'La Gomera', 'El Hierro'],
+            datasets: [{
+                label: 'Habitantes',
+                data: [931646, 853262, 156112, 120021, 83439, 21798, 11423],
+                backgroundColor: [
+                    '#3498db',
+                    '#f1c40f',
+                    '#2ecc71',
+                    '#e67e22',
+                    '#9b59b6',
+                    '#e74c3c',
+                    '#95a5a6' 
+                ],
+                borderRadius: 5 
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: { display: false }
+            },
+            scales: {
+                y: { grid: { color: '#f0f0f0' } },
+                x: { grid: { display: false } }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>
