@@ -3,266 +3,341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>España y Canarias: Realidades Demográficas</title>
+    <title>Trabajo de Geografía: La Población Mundial y Local</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@400;700&family=Montserrat:wght@300;600;800&display=swap" rel="stylesheet">
     <style>
-        
-        body { 
-            font-family: 'Open Sans', sans-serif; 
-            margin: 0; 
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); 
-            color: #2c3e50; 
+        :root {
+            --accent: #2563eb;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --bg-body: #f8fafc;
+            --white: #ffffff;
         }
 
-        
-        header { 
-            background: linear-gradient(to right, #ff512f, #dd2476); 
-            color: white; 
-            padding: 60px 20px; 
-            text-align: center; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        header h1 { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 3em; 
-            margin: 0; 
-            text-transform: uppercase; 
-            letter-spacing: 2px; 
-        }
-        header p { font-size: 1.3em; margin-top: 10px; opacity: 0.9; }
-
-        
-        .main-container { 
-            max-width: 900px; 
-            margin: -40px auto 50px; 
-            position: relative; 
-            z-index: 10;
-        }
-
-        
-        .card { 
-            background: white; 
-            border-radius: 15px; 
-            padding: 40px; 
-            margin-bottom: 30px; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
-            transition: transform 0.3s ease;
-        }
-        .card:hover { transform: translateY(-5px); }
-
-        h2 { 
-            color: #dd2476; 
-            font-family: 'Montserrat', sans-serif; 
-            border-left: 5px solid #ff512f; 
-            padding-left: 15px; 
-            margin-top: 0; 
-        }
-
-        p { line-height: 1.8; font-size: 1.05em; color: #555; }
-        
-    
-        .did-you-know {
-            background-color: #fff8e1;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
-            border-left: 5px solid #ffc107;
-            font-style: italic;
-        }
-
-       
-        .chart-box { margin: 30px 0; height: 350px; }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; overflow: hidden; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.05); }
-        th { background: #2c3e50; color: white; padding: 15px; text-align: left; }
-        td { padding: 15px; border-bottom: 1px solid #eee; }
-        tr:last-child td { border-bottom: none; }
-        
-     
-        footer { 
-            text-align: center; 
-            padding: 40px 20px; 
-            color: #555; 
-            background: #e9ecef;
-            border-top: 1px solid #ddd;
-        }
-        .student-info {
-            background: white;
-            display: inline-block;
-            padding: 20px 40px;
-            border-radius: 50px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        .student-names {
-            font-weight: 700;
-            color: #dd2476;
-            font-size: 1.1em;
+        body {
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
-        }
-        .student-class {
-            margin: 5px 0 0;
-            font-size: 0.9em;
-            color: #2c3e50;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            scroll-behavior: smooth;
         }
 
-        @media (max-width: 768px) {
-            header h1 { font-size: 2em; }
-            .card { padding: 20px; }
+        p, li { font-family: 'Crimson Pro', serif; font-size: 1.2rem; line-height: 1.6; text-align: justify; margin-bottom: 1rem; }
+        strong { color: var(--text-main); font-weight: 700; }
+
+        header {
+            height: 50vh;
+            background: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)), 
+                        url('https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        header h1 { font-size: 3.2rem; margin: 0; font-weight: 800; letter-spacing: -1px; }
+        header p { font-style: italic; opacity: 0.9; max-width: 800px; font-size: 1.3rem; margin-top: 10px; }
+
+        .container { max-width: 1050px; margin: 0 auto; padding: 40px 20px; }
+
+        .section-tag {
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--accent);
+            font-weight: 800;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        section { 
+            margin-bottom: 60px; 
+            padding-bottom: 40px; 
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .flex-row {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .flex-text { flex: 1.2; }
+        .flex-chart { flex: 0.8; min-width: 320px; }
+
+        h2 { font-size: 2.2rem; margin: 0 0 20px 0; border-left: 6px solid var(--accent); padding-left: 15px; }
+        h3 { font-size: 1.5rem; color: var(--accent); margin-top: 25px; margin-bottom: 15px; }
+        
+        .chart-container {
+            background: var(--white);
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            height: 250px;
+        }
+
+        .academic-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .concept-box {
+            background: #f1f5f9;
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-bottom: 3px solid var(--accent);
+        }
+
+        .migration-box {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 10px;
+        }
+
+        .migration-box h4 { margin-top: 0; color: #1e293b; border-bottom: 2px solid #f1f5f9; padding-bottom: 5px; }
+
+        .highlight-card {
+            background: #1e293b;
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        footer {
+            background: #0f172a;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        @media (max-width: 850px) {
+            .flex-row { flex-direction: column; }
+            .academic-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>España y Canarias</h1>
-    <p>¿Hacia dónde va nuestra población?</p>
+    <h1>Geografía de la Población</h1>
+    <p>Un análisis completo desde la historia europea hasta los retos de Canarias.</p>
 </header>
 
-<div class="main-container">
+<div class="container">
+    
+    <!-- BLOQUE 1: FUNDAMENTOS -->
+    <section id="fundamentos">
+        <span class="section-tag">01. Los Pilares</span>
+        <div class="flex-row">
+            <div class="flex-text">
+                <h2>Entendiendo la Población</h2>
+                <p>Estudiar la población es mucho más que contar gente. Es analizar <strong>quiénes somos</strong>: cuántos niños hay, cuánta gente trabaja y cómo nos repartimos por el planeta. Para esto, el Estado usa herramientas como el <strong>Censo</strong> (cada 10 años) y el <strong>Padrón Municipal</strong>.</p>
+                <div class="academic-grid">
+                    <div class="concept-box">
+                        <strong>Ecúmene:</strong> Zonas donde se vive bien (buen clima, agua, comida).
+                    </div>
+                    <div class="concept-box">
+                        <strong>Anecúmene:</strong> Lugares vacíos porque la vida es muy difícil (polos o desiertos).
+                    </div>
+                </div>
+            </div>
+            <div class="flex-chart">
+                <div class="chart-container">
+                    <canvas id="worldStructureChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="card">
-        <h2>1. No son solo números</h2>
-        <p>Cuando hablamos de demografía, a veces nos perdemos en cifras aburridas. Pero la realidad es que la población de España está cambiando de forma radical. Si miramos a nuestro alrededor, cada vez vemos menos carritos de bebé y más gente mayor. Este trabajo intenta explicar <strong>por qué pasa esto</strong> y qué diferencia hay entre vivir en un pueblo de Castilla o en una ciudad saturada de Canarias.</p>
-    </div>
+    <!-- BLOQUE 2: HISTORIA DE EUROPA (NUEVO) -->
+    <section id="historia-europa">
+        <span class="section-tag">02. Evolución Histórica</span>
+        <h2>¿Cómo ha cambiado Europa?</h2>
+        <p>A lo largo de la historia, Europa ha pasado por tres grandes etapas demográficas:</p>
+        <ul>
+            <li><strong>Antiguo Régimen (Hasta el S. XVIII):</strong> Mucha natalidad pero también muchísima mortalidad por guerras, pestes y hambre. La población casi no crecía.</li>
+            <li><strong>Revolución Industrial:</strong> La medicina mejoró y hubo más comida. La gente dejó de morir tan joven pero seguían naciendo muchos niños. Europa "explotó" en habitantes y muchos tuvieron que emigrar a América.</li>
+            <li><strong>Época Actual:</strong> La mortalidad es bajísima, pero la natalidad ha caído en picado. Europa se ha convertido en el "viejo continente".</li>
+        </ul>
+        <div class="highlight-card">
+            <p>Dato curioso: Hace 100 años, Europa representaba el 25% de la población mundial. Hoy, apenas llegamos al 10%.</p>
+        </div>
+    </section>
 
-    <div class="card">
-        <h2>2. España: El "Invierno Demográfico"</h2>
-        <p>España ha superado los 48 millones de habitantes, un máximo histórico. Pero, ¡ojo!, esto tiene trampa. No crecemos porque nazcan más niños (de hecho, tenemos una de las tasas de natalidad más bajas del mundo), sino porque la gente vive más años y porque sigue llegando gente de fuera a trabajar.</p>
+    <!-- BLOQUE 3: DIFERENCIAS ENTRE PAÍSES (NUEVO) -->
+    <section id="comparativa-paises">
+        <span class="section-tag">03. El Mundo a Distintas Velocidades</span>
+        <div class="flex-row">
+            <div class="flex-text">
+                <h2>Ricos, pobres y los que están en medio</h2>
+                <p>No todos los países crecen igual. Podemos dividirlos en tres grupos principales:</p>
+                <p><strong>1. Países Desarrollados (como España o Japón):</strong> Tienen poblaciones envejecidas. Hay mucha esperanza de vida pero muy pocos nacimientos. El problema es quién cuidará de los mayores en el futuro.</p>
+                <p><strong>2. Países en Desarrollo (como Brasil o India):</strong> Están en el medio. Su población crece rápido porque la sanidad mejora, pero la natalidad todavía es alta. Son los que mueven la economía mundial ahora mismo.</p>
+                <p><strong>3. Países del Tercer Mundo (como Níger o Chad):</strong> Tienen una población jovencísima. Nacen muchos niños, pero la esperanza de vida es baja por la falta de recursos. Esto genera mucha presión para emigrar buscando un futuro.</p>
+            </div>
+            <div class="flex-chart">
+                <div class="chart-container">
+                    <canvas id="developmentChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOQUE 4: DINÁMICAS Y CRECIMIENTO -->
+    <section id="crecimiento">
+        <span class="section-tag">04. Dinámicas Actuales</span>
+        <div class="flex-row">
+            <div class="flex-chart">
+                <div class="chart-container">
+                    <canvas id="europeAgeChart"></canvas>
+                </div>
+            </div>
+            <div class="flex-text">
+                <h2>Crecimiento y Envejecimiento</h2>
+                <p>Un país puede crecer de dos formas: por <strong>Crecimiento Natural</strong> (más nacimientos que muertes) o por <strong>Saldo Migratorio</strong> (viene más gente de la que se va).</p>
+                <p>En Europa la gente vive mucho pero nacen pocos niños. Al haber tantos jubilados y pocos jóvenes trabajando, cuesta más mantener servicios como los médicos. Por eso, casi todos los países europeos dependen de que venga gente de fuera para seguir funcionando.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLOQUE 5: MIGRACIONES -->
+    <section id="migraciones">
+        <span class="section-tag">05. Movimientos Humanos</span>
+        <h2>Inmigración y Emigración: Las dos caras</h2>
+        <p>Hoy la población cambia sobre todo por los movimientos. Hemos analizado qué tiene de positivo y qué retos supone este proceso, especialmente en lugares como España y Canarias:</p>
         
-        <div class="did-you-know">
-            💡 <strong>Dato curioso:</strong> Se habla mucho de la "España Vaciada". Y es real: el 90% de la población se aprieta en el 30% del territorio (Madrid y la costa), dejando el interior prácticamente desierto.
+        <div class="academic-grid">
+            <div class="migration-box">
+                <h4>Inmigración (Llegar)</h4>
+                <p><strong>Puntos positivos:</strong> Trae gente joven con ganas de trabajar, ayuda a sostener las pensiones y nos hace una sociedad más abierta y variada.</p>
+                <p><strong>Retos:</strong> Si viene muchísima gente de golpe, puede haber problemas para encontrar vivienda o colas en el médico si no se gestiona bien.</p>
+            </div>
+            <div class="migration-box">
+                <h4>Emigración (Irse)</h4>
+                <p><strong>Puntos positivos:</strong> Los jóvenes aprenden idiomas y ven mundo, y pueden traer ideas nuevas si vuelven.</p>
+                <p><strong>Retos:</strong> Es la "fuga de cerebros". Gastamos dinero en formar médicos o ingenieros para que luego se vayan a trabajar a otros países.</p>
+            </div>
         </div>
 
-        <p>Esto crea un país a dos velocidades: ciudades con alquileres por las nubes y pueblos donde cierran los colegios por falta de niños.</p>
-
-        <div class="chart-box">
-            <canvas id="graficoEspana"></canvas>
+        <div class="highlight-card">
+            <h3>España: El desequilibrio territorial</h3>
+            <p>En España la gente se va del interior a la costa o a Madrid. Esto crea la <strong>España vaciada</strong>: pueblos sin gente joven donde solo quedan ancianos, mientras que las ciudades están saturadas.</p>
         </div>
-    </div>
+    </section>
 
-    <div class="card">
-        <h2>3. Canarias: ¿Cabemos todos?</h2>
-        <p>Si miramos a Canarias, la película cambia. Aquí el problema no es que falte gente, sino que, en las islas grandes, casi no cabemos. Tenerife y Gran Canaria soportan una presión brutal. El turismo, que es el motor de todo, atrae trabajadores y residentes europeos, lo que dispara la población.</p>
-        <p>Esto tiene consecuencias directas que vemos todos los días: atascos interminables, falta de vivienda asequible y más consumo de agua y energía de la que podemos generar.</p>
-
-        <div class="chart-box">
-            <canvas id="graficoCanarias"></canvas>
+    <!-- BLOQUE 6: CANARIAS -->
+    <section id="canarias" style="border-bottom: none;">
+        <span class="section-tag">06. Nuestra Realidad</span>
+        <div class="flex-row">
+            <div class="flex-text">
+                <h2>Canarias: El límite de las islas</h2>
+                <p>Aquí el espacio es oro. Al ser islas, no podemos crecer hacia afuera. Tenemos muchísima gente viviendo en zonas de costa porque gran parte del centro de las islas es espacio protegido.</p>
+                <p>El gran debate es la <strong>Capacidad de Carga</strong>. Somos 2 millones de personas más los turistas. Tenemos que decidir cuánta gente aguanta el territorio sin que falte agua, luz o espacio para todos. Es el reto más importante de nuestro futuro.</p>
+            </div>
+            <div class="flex-chart">
+                <div class="chart-container">
+                    <canvas id="canarySectorsChart"></canvas>
+                </div>
+            </div>
         </div>
-        <p style="text-align: center; font-size: 0.9em; color: #888;">*Datos aproximados basados en los últimos registros del ISTAC.</p>
-    </div>
-
-    <div class="card">
-        <h2>4. Cara a Cara: Península vs. Archipiélago</h2>
-        <p>Para entenderlo mejor, he comparado los puntos clave. Fíjate en la diferencia de densidad:</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Tema</th>
-                    <th>España (General)</th>
-                    <th>Canarias</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>El gran problema</strong></td>
-                    <td>Envejecimiento y despoblación rural.</td>
-                    <td>Superpoblación y falta de vivienda.</td>
-                </tr>
-                <tr>
-                    <td><strong>Densidad</strong></td>
-                    <td>95 personas por km² (aprox).</td>
-                    <td>+320 personas por km² (¡el triple!).</td>
-                </tr>
-                <tr>
-                    <td><strong>El futuro</strong></td>
-                    <td>Necesita inmigrantes para pagar pensiones.</td>
-                    <td>Necesita gestionar mejor los recursos limitados.</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <div class="card">
-        <h2>5. Conclusión Personal</h2>
-        <p>Después de analizar los datos, mi conclusión es que estamos ante retos opuestos. Mientras que en gran parte de España el silencio se apodera de los pueblos, en Canarias el ruido y la saturación son el día a día. </p>
-        <p>No se trata solo de cuántos somos, sino de <strong>cómo vivimos</strong>. El reto de mi generación será encontrar el equilibrio: repoblar lo vacío y hacer sostenible lo que ya está lleno.</p>
-    </div>
+    </section>
 
 </div>
 
 <footer>
-    <div class="student-info">
-        <p class="student-names">Carlos Adolfo Rodriguez Paz & Akram Alazzouzi</p>
-        <p class="student-class">3º ESO B | <strong>CEO El Cardón</strong></p>
-    </div>
+    <p><strong>Trabajo realizado por:</strong> Carlos Adolfo Rodriguez Paz & Akram Alazzouzi</p>
+    <p style="opacity: 0.7; font-size: 0.9rem;">Geografía Humana | 3º ESO B | CEO El Cardón | Fuerteventura</p>
 </footer>
 
 <script>
-    
-    const ctxESP = document.getElementById('graficoEspana').getContext('2d');
-    new Chart(ctxESP, {
-        type: 'line',
+    Chart.defaults.font.family = "'Montserrat', sans-serif";
+    Chart.defaults.font.size = 11;
+
+    const commonOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { 
+            legend: { 
+                position: 'bottom', 
+                labels: { boxWidth: 15, padding: 15 } 
+            } 
+        }
+    };
+
+    // 1. Población Mundial
+    new Chart(document.getElementById('worldStructureChart'), {
+        type: 'pie',
         data: {
-            labels: ['1990', '2000', '2010', '2020', '2024'],
+            labels: ['Asia', 'África', 'América', 'Europa', 'Oceanía'],
             datasets: [{
-                label: 'Población en Millones',
-                data: [38.8, 40.5, 46.5, 47.3, 48.6],
-                borderColor: '#ff512f',
-                backgroundColor: 'rgba(255, 81, 47, 0.1)',
-                borderWidth: 3,
-                tension: 0.4,
-                fill: true,
-                pointBackgroundColor: '#fff',
-                pointBorderColor: '#dd2476',
-                pointRadius: 5
+                data: [59, 18, 13, 9, 1],
+                backgroundColor: ['#1d4ed8', '#2563eb', '#3b82f6', '#60a5fa', '#93c5fd'],
+                borderWidth: 2
             }]
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false },
-                tooltip: { backgroundColor: '#2c3e50' }
-            },
-            scales: {
-                y: { min: 35 } 
-            }
-        }
+        options: commonOptions
     });
 
-
-    const ctxCAN = document.getElementById('graficoCanarias').getContext('2d');
-    new Chart(ctxCAN, {
+    // 2. Edad Europa
+    new Chart(document.getElementById('europeAgeChart'), {
         type: 'bar',
         data: {
-            labels: ['Tenerife', 'Gran Canaria', 'Lanzarote', 'Fuerteventura', 'La Palma', 'La Gomera', 'El Hierro'],
+            labels: ['Niños', 'Adultos', 'Mayores 65'],
             datasets: [{
-                label: 'Habitantes',
-                data: [931646, 853262, 156112, 120021, 83439, 21798, 11423],
-                backgroundColor: [
-                    '#3498db',
-                    '#f1c40f',
-                    '#2ecc71',
-                    '#e67e22',
-                    '#9b59b6',
-                    '#e74c3c',
-                    '#95a5a6' 
-                ],
-                borderRadius: 5 
+                label: '% Población',
+                data: [15, 64, 21],
+                backgroundColor: '#2563eb',
+                borderRadius: 8
             }]
         },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: { display: false }
-            },
-            scales: {
-                y: { grid: { color: '#f0f0f0' } },
-                x: { grid: { display: false } }
-            }
-        }
+        options: { ...commonOptions, scales: { y: { beginAtZero: true, max: 100 } } }
+    });
+
+    // 3. Comparativa Desarrollo (Nacimientos por cada 1000 hab)
+    new Chart(document.getElementById('developmentChart'), {
+        type: 'bar',
+        data: {
+            labels: ['Desarrollados', 'En Desarrollo', '3er Mundo'],
+            datasets: [{
+                label: 'Tasa de Natalidad (aprox)',
+                data: [9, 18, 35],
+                backgroundColor: ['#2563eb', '#60a5fa', '#ef4444'],
+                borderRadius: 8
+            }]
+        },
+        options: { ...commonOptions, scales: { y: { beginAtZero: true } } }
+    });
+
+    // 4. Sectores Canarias
+    new Chart(document.getElementById('canarySectorsChart'), {
+        type: 'polarArea',
+        data: {
+            labels: ['Servicios (Turismo)', 'Construcción', 'Industria', 'Agricultura'],
+            datasets: [{
+                data: [85, 7, 4, 4],
+                backgroundColor: [
+                    'rgba(37, 99, 235, 0.8)', 
+                    'rgba(96, 165, 250, 0.8)', 
+                    'rgba(147, 197, 253, 0.8)', 
+                    'rgba(203, 213, 225, 0.8)'
+                ]
+            }]
+        },
+        options: commonOptions
     });
 </script>
 
